@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon-logo.svg" type="image/svg+xml">
+    <title>Countrivia</title>
+</head>
+
+<body>
+    <!-- Background -->
+    <div id="bg">
+
+        <!-- Start game card -->
+        <div id="startCard">
+            <div class="titleImage">
+                <p class="startTitle">countrivia</p>
+
+                <div class="imageContainer">
+                    <img src="game-poster.png" alt="Countrivia Poster" title="Countrivia Poster">
+                </div>
+            </div>
+
+            <div class="Btns">
+                <button class="startBtn" type="button">Start Game</button>
+            </div>
+        </div>
+
+        <!-- 1st question card -->
+        <div id="questionOne" class="hide">
+            <div class="questionTitleImage">
+                <p class="questionTitle">quiz <span>one</span></p>
+
+                <div class="imageContainer">
+                    <img src="quiz-one.png" alt="Quiz One Poster" title="Quiz One Poster">
+                </div>
+            </div>
+
+            <p class="question">Which country in the world does this flag belong to?</p>
+
+            <div class="Btns">
+                <button class="answerBtn" type="button" data-correct="false">A. Portugal</button>
+                <button class="answerBtn" type="button" data-correct="true">B. Germany</button>
+            </div>
+        </div>
+
+        <!-- 2nd question card -->
+        <div id="questionTwo" class="hide">
+            <div class="questionTitleImage">
+                <p class="questionTitle">quiz <span>two</span></p>
+
+                <div class="imageContainer">
+                    <img src="quiz-two.png" alt="Quiz Two Poster" title="Quiz Two Poster">
+                </div>
+            </div>
+
+            <p class="question">Which country in the world does this flag belong to?</p>
+
+            <div class="Btns">
+                <button class="answerBtn" type="button" data-correct="true">A. Nigeria</button>
+                <button class="answerBtn" type="button" data-correct="false">B. Ghana</button>
+            </div>
+        </div>
+
+        <!-- 3rd question card -->
+        <div id="questionThree" class="hide">
+            <div class="questionTitleImage">
+                <p class="questionTitle">quiz <span>three</span></p>
+
+                <div class="imageContainer">
+                    <img src="quiz-three.png" alt="Quiz Three Poster" title="Quiz Three Poster">
+                </div>
+            </div>
+
+            <p class="question">Which country in the world does this flag belong to?</p>
+
+            <div class="Btns">
+                <button class="answerBtn" type="button" data-correct="false">A. Korea</button>
+                <button class="answerBtn" type="button" data-correct="true">B. Japan</button>
+            </div>
+        </div>
+
+        <!-- 4th question card -->
+        <div id="questionFour" class="hide">
+            <div class="questionTitleImage">
+                <p class="questionTitle">quiz <span>four</span></p>
+
+                <div class="imageContainer">
+                    <img src="quiz-four.png" alt="Quiz Four Poster" title="Quiz Four Poster">
+                </div>
+            </div>
+
+            <p class="question">Which country in the world does this flag belong to?</p>
+
+            <div class="Btns">
+                <button class="answerBtn" type="button" data-correct="True">A. USA</button>
+                <button class="answerBtn" type="button" data-correct="False">B. Canada</button>
+            </div>
+        </div>
+
+        <!-- Quiz end -->
+        <div id="quizEnd" class="hide">
+            <div class="questionTitleImage">
+                <p class="questionTitle" id="questionTitle"></p>
+
+                <div class="imageContainer">
+                    <img src="game-end.png" alt="Quiz End Poster" title="Quiz End Poster">
+                </div>
+            </div>
+
+            <div class="Btns">
+                <button class="restartBtn" type="button">Restart Game</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>
