@@ -73,7 +73,7 @@ function handleAnswerClick(event) {
             // Keeps the question hidden and shows the end quiz screen if the current index is not less than the length of the question array which also shows the score
         } else {
             quizEnd.classList.remove("hide");
-            questionTitle.innerHTML = `Your score is <span>${currentScore}/4</span>`;
+            questionTitle.innerHTML = `your score is <span>${currentScore}/4</span>`;
         }
     });
 }
