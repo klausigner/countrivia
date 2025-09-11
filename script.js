@@ -1,94 +1,259 @@
-// Tracks the score and questions index
-let currentScore = 0;
-let currentQuestion = 0;
+"use strict";
+// Targeting DOM Elements
+const startGame = document.querySelector(".startGame");
+const startGameBtn = document.querySelector(".startGameBtn");
 
-// Variables storing all HTML references
-const startCard = document.getElementById("startCard");
-const startBtn = document.querySelector(".startBtn");
-const quizEnd = document.getElementById("quizEnd");
-const restartBtn = document.querySelector(".restartBtn");
-const questionTitle = document.getElementById("questionTitle");
+const questionCard = document.querySelector(".questionCard");
+const questionNumber = document.querySelector(".questionNumber");
+let questionImage = document.querySelector(".questionImage");
+const question = document.querySelector(".question");
+const btns = document.querySelector(".questionCard > .btns");
+const questionCardBtn = document.querySelectorAll(".questionCardBtn");
 
-// Array holding each question containers
-const questionContainers = [
-    document.getElementById("questionOne"),
-    document.getElementById("questionTwo"),
-    document.getElementById("questionThree"),
-    document.getElementById("questionFour")
+const endGame = document.querySelector(".endGame");
+const endGameTitle = document.querySelector(".endGameTitle");
+const endGameBtn = document.querySelector(".endGameBtn");
+
+// Soundtracks
+const duringGame = document.getElementById("duringGame");
+const afterGame = document.getElementById("afterGame");
+
+// Index and Score Variable Declaration
+let index = 0;
+let score = 0;
+
+// Array of Questions, Images, Options and Answers
+const numQuesImgOptAns = [
+    {
+        number: "one", 
+        question: "Which country is represented by this flag and landmark?",
+        imgSrc: "quiz-one.png", 
+        option: ["A. Belgium", "B. Germany"],
+        answer: "B. Germany",
+    },
+
+    {
+        number: "two",
+        question: "Which country is represented by this flag and landmark?",
+        imgSrc: "quiz-two.png", 
+        option: ["A. Nigeria", "B. Algeria"],
+        answer: "A. Nigeria",
+    },
+
+    {
+        number: "three",
+        question: "Which country is represented by this flag and landmark?",
+        imgSrc: "quiz-three.png", 
+        option: ["A. South Korea", "B. Japan"],
+        answer: "B. Japan",
+    },
+
+    {
+        number: "four",
+        question: "Which country is represented by this flag and landmark?",
+        imgSrc: "quiz-four.png", 
+        option: ["A. USA", "B. Liberia"],
+        answer: "A. USA",
+    },
+
+    {
+        number: "five",
+        question: "Which country is represented by this flag and landmark?",
+        imgSrc: "quiz-five.png", 
+        option: ["A. Uruguay", "B. Argentina"],
+        answer: "B. Argentina",
+    },
+
+    {
+        number: "six",
+        question: "Which country is represented by this flag and landmark?",
+        imgSrc: "quiz-six.png", 
+        option: ["A. Australia", "B. New Zealand"],
+        answer: "A. Australia",
+    },
+
+    {
+        number: "seven",
+        question: "Which country is represented by this flag and landmark?",
+        imgSrc: "quiz-seven.png", 
+        option: ["A. Mozambique", "B. Jamaica"],
+        answer: "B. Jamaica",
+    },
+
+    {
+        number: "eight",
+        question: "Which country is represented by this flag and landmark?",
+        imgSrc: "quiz-eight.png", 
+        option: ["A. Ghana", "B. Bolivia"],
+        answer: "A. Ghana",
+    },
+
+    {
+        number: "nine",
+        question: "Which country is represented by this flag and landmark?",
+        imgSrc: "quiz-nine.png", 
+        option: ["A. Niger", "B. India"],
+        answer: "B. India",
+    },
+
+    {
+        number: "ten",
+        question: "Which country is represented by this flag and landmark?",
+        imgSrc: "quiz-ten.png", 
+        option: ["A. Spain", "B. Macedonia"],
+        answer: "A. Spain",
+    },
+
+    {
+        number: "eleven",
+        question: "Which country is represented by this flag and landmark?",
+        imgSrc: "quiz-eleven.png", 
+        option: ["A. Peru", "B. Canada"],
+        answer: "B. Canada",
+    },
+
+    {
+        number: "twelve",
+        question: "Which country is represented by this flag and landmark?",
+        imgSrc: "quiz-twelve.png", 
+        option: ["A. Brazil", "B. Gabon"],
+        answer: "A. Brazil",
+    },
 ];
 
-// Array that represents correct answers
-const correctAnswers = [
-    "B. Germany",
-    "A. Nigeria",
-    "B. Japan",
-    "A. USA"
-];
+// Start Game
+startGameBtn.addEventListener("click", () => {
+    startGame.classList.add("hidden");
+    questionCard.classList.remove("hidden");
 
-// Starts the game
-startBtn.addEventListener("click", function() {
-    startCard.classList.add("hide");
-    questionContainers[currentQuestion].classList.remove("hide");
+    duringGame.play();
+    duringGame.loop = true;
+
+    afterGame.pause();
+    afterGame.currentTime = 0;
+    afterGame.loop = false;
 });
 
-// A function that determines what happens after an answer button is clicked
-function handleAnswerClick(event) {
-    // Attaches a target to know which answer button was clicked
-    const button = event.target;
-    // Removes space from the texts in the answer buttons to match 
-    const selectedText = button.innerText.trim();
+// Restart Game
+endGameBtn.addEventListener("click", () => {
+    index = 0;
+    score = 0;
 
-    // Checks if the answer to the question is correct and adds 1 to the score if it is
-    if (selectedText === correctAnswers[currentQuestion]) {
-        currentScore++;
+    afterGame.pause();
+    afterGame.currentTime = 0;
+    afterGame.loop = false;
+
+    startGame.classList.remove("hidden");
+    endGame.classList.add("hidden");
+
+    quizLogic();
+});
+
+// Quiz Logic
+function quizLogic() {
+    // If There are Still Questions Left
+    if (index < numQuesImgOptAns.length) {
+        // Add Question Number
+        questionNumber.textContent = numQuesImgOptAns[index].number;
+
+        // Add Image
+        questionImage.src = numQuesImgOptAns[index].imgSrc;
+
+        // Add Question
+        question.textContent = numQuesImgOptAns[index].question;
+
+        // Add Options
+        questionCardBtn.forEach((items, i) => {
+            items.textContent = numQuesImgOptAns[index].option[i];
+        });
+
+        // Enable Buttons
+        questionCardBtn.forEach((btns) => {
+            btns.classList.remove("disabled");
+        })
     }
 
-    // Creates and stores a variable indicating current question
-    const container = questionContainers[currentQuestion];
-    const buttons = container.querySelectorAll(".answerBtn");
+    // If There are no Questions Left
+    else {
+        afterGame.play();
+        afterGame.loop = true;
 
-    // After answering, all buttons are disabled and the color changes so the player can’t click again 
-    buttons.forEach(function(btn) {
-        btn.disabled = true;
-        btn.style.backgroundColor = "#5A5A5A";
-    });
+        duringGame.pause();
+        duringGame.currentTime = 0;
+        duringGame.loop = false;
 
-    // Create a next question button that will appear after an answer button is clicked
-    const nextBtn = document.createElement("button");
-    nextBtn.classList.add("nextBtn");
-    // Adds either the "Next Question" or "Check Score" button depending on how many questions are left
-    nextBtn.textContent = currentQuestion < questionContainers.length - 1 ? "Next Question" : "Check Score";
-    container.appendChild(nextBtn);
+        questionCard.classList.add("hidden");
+        endGame.classList.remove("hidden");
+        endGameTitle.innerHTML = `your score is <span>${score}/${numQuesImgOptAns.length}</span>`;
+    }
+};
 
-    // What happens if the next answer button is clicked
-    nextBtn.addEventListener("click", function() {
-        // Hides current question
-        container.classList.add("hide");
-        // Increases the question index and loads the next question
-        currentQuestion++;
-        
-        // Unhides the question if the current index is less than the length of the question array
-        if (currentQuestion < questionContainers.length) {
-            questionContainers[currentQuestion].classList.remove("hide");
-            // Keeps the question hidden and shows the end quiz screen if the current index is not less than the length of the question array which also shows the score
-        } else {
-            quizEnd.classList.remove("hide");
-            questionTitle.innerHTML = `your score is <span>${currentScore}/4</span>`;
+// Answer Buttons
+questionCardBtn.forEach((items) => {
+    items.addEventListener("click", () => {
+        // If Option is Correct
+        if (items.textContent === numQuesImgOptAns[index].answer) {
+            score++;
+
+            items.classList.add("selected");
+
+            questionCardBtn.forEach((btn) => {
+                btn.classList.add("disabled");
+            })
+
+            // Next or Check Score Button
+            const next = document.createElement("button");
+            if (index === numQuesImgOptAns.length - 1) {
+                next.textContent = "Check Score";
+            } 
+
+            else {
+                next.textContent = "Next";
+            }
+
+            next.classList.add("questionCardNextBtn");
+            
+            next.addEventListener("click", () => {
+                index++;
+                items.classList.remove("selected");
+                quizLogic();
+                next.remove();
+            });
+
+            questionCard.append(next);
+        }
+
+        // If Option is Wrong
+        else {
+            items.classList.add("selected");
+
+            questionCardBtn.forEach((btn) => {
+                btn.classList.add("disabled");
+            })
+
+            // Next or Check Score Button
+            const next = document.createElement("button");
+            if (index === numQuesImgOptAns.length - 1) {
+                next.textContent = "Check Score";
+            } 
+
+            else {
+                next.textContent = "Next";
+            }
+
+            next.classList.add("questionCardNextBtn");
+            
+            next.addEventListener("click", () => {
+                index++;
+                items.classList.remove("selected");
+                quizLogic();
+                next.remove();
+            });
+
+            questionCard.append(next);
         }
     });
-}
-
-// Attach answer button listeners
-questionContainers.forEach(function(container) {
-    // Creates a variable that stores all answer buttons
-    const buttons = container.querySelectorAll(".answerBtn");
-    // Initiates the handleAnswerClick function
-    buttons.forEach(function(button) {
-        button.addEventListener("click", handleAnswerClick);
-    });
 });
 
-// Restarts the game when the restart game button is clicked
-restartBtn.addEventListener("click", function() {
-    window.location.reload();
-});
+// Initialize Quiz Logic
+quizLogic();

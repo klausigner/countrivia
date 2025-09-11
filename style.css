@@ -24,16 +24,18 @@
     box-sizing: border-box;
 }
 
-#bg {
+body {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
     background-color: var(--Black-500);
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
 }
 
-#startCard, #questionOne, #questionTwo, #questionThree, #questionFour, #quizEnd {
+.startGame, .questionCard, .endGame {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -46,7 +48,31 @@
     gap: 24px;
 }
 
-.titleImage, .questionTitleImage {
+.startGame {
+    animation: 
+        appearCard 0.9s ease-in-out forwards,
+        floatCard 2s ease-in-out 1s infinite
+    ;
+}
+
+.questionCard, .endGame {
+    animation: 
+        floatCard 2s ease-in-out infinite
+    ;
+}
+
+@keyframes appearCard {
+    from {opacity: 0; transform: scale(24) translateY(0px) rotate3d(0, 0, -2, 360deg);}
+    to {opacity: 1; transform: scale(1) translateY(0px);}
+}
+
+@keyframes floatCard {
+    0% {transform: translateY(0px);}
+    50% {transform: translateY(16px);}
+    100% {transform: translateY(0px);}
+}
+
+.startGameImage, .questionCardImage, .endGameImage {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -55,7 +81,7 @@
     gap: 16px;
 }
 
-.startTitle, .questionTitle {
+.startGameTitle, .questionCardTitle, .endGameTitle {
     color: var(--White-500);
     font-family: var(--Pixel);
     font-size: 24px;
@@ -75,14 +101,15 @@ img {
     height: 100%;
     width: 100%;
     object-fit: cover;
+    transition: transform 0.5s ease-in-out;
 }
 
 img:hover {
-    transform: scale(1.10) translateY(0px);
-    transition: transform 0.7s ease-in-out;
+    transform: scale(1.15) translateY(0px);
+    transition: transform 0.5s ease-in-out;
 }
 
-.Btns {
+.btns {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -91,7 +118,7 @@ img:hover {
     width: 100%;
 }
 
-.startBtn, .nextBtn, .restartBtn{
+.startGameBtn, .questionCardBtn, .questionCardNextBtn, .endGameBtn {
     width: 100%;
     background-color: var(--Blue-500);
     color: var(--White-500);
@@ -104,21 +131,19 @@ img:hover {
     line-height: 17px;
     letter-spacing: -0.28px;
     cursor: pointer;
+    transition: all 0.5s ease-in-out;
 }
 
-.startBtn:hover, .nextBtn:hover, .restartBtn:hover {
-    background-color: var(--Blue-400);
-    transition: 0.35s ease-in-out;
+.startGameBtn:hover, .questionCardBtn:hover, .questionCardNextBtn:hover, .endGameBtn:hover {
+    background-color: var(--Yellow-500);
+    color: var(--Black-500);
+    transition: all 0.5s ease-in-out;
 }
 
-.startBtn:active, .nextBtn:active, .restartBtn:active {
-    background-color: var(--Blue-400);
-    transition: 0.35s ease-in-out;
-}
-
-.startBtn:focus, .nextBtn:focus, .restartBtn:focus {
-    background-color: var(--Blue-400);
-    transition: 0.35s ease-in-out;
+.startGameBtn:active, .questionCardBtn:active, .questionCardNextBtn:active, .endGameBtn:active {
+    background-color: var(--Yellow-500);
+    color: var(--Black-500);
+    transition: all 0.5s ease-in-out;
 }
 
 span {
@@ -134,40 +159,20 @@ span {
     letter-spacing: -0.28px;
 }
 
-.answerBtn {
-    width: 100%;
-    background-color: var(--Black-300);
+.hidden {
+    display: none;
+    transition: all 0.5s ease-in-out;
+}
+
+.disabled {
+    background-color: var(--Black-200);
     color: var(--Black-100);
-    padding: 11.5px 16px;
-    border-radius: 6px;
-    border: none;
-    font-family: var(--Pixel);
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 17px;
-    letter-spacing: -0.28px;
-    cursor: pointer;
-}
-
-.answerBtn:hover {
-    background-color: var(--Blue-600);
-    transition: 0.35s ease-in-out;
-}
-
-.answerBtn:active {
-    background-color: var(--Blue-600);
-    transition: 0.35s ease-in-out;
-}
-
-.answerBtn:focus {
-    background-color: var(--Blue-600);
-    transition: 0.35s ease-in-out;
-}
-
-.hide {
-    display: none !important;
-}
-
-button:disabled:hover {
+    pointer-events: none;
     cursor: not-allowed;
+    opacity: 0.75;
+}
+
+.selected {
+    background-color: var(--Blue-600);
+    transition: all 0.5s ease-in-out;
 }
