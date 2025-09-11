@@ -121,6 +121,14 @@ const numQuesImgOptAns = [
     },
 ];
 
+// ✅ Preload all Quiz Images at the Start
+const imageCache = [];
+numQuesImgOptAns.forEach((q) => {
+    const img = new Image();
+    img.src = q.imgSrc;
+    imageCache.push(img);
+});
+
 // Start Game
 startGameBtn.addEventListener("click", () => {
     startGame.classList.add("hidden");
