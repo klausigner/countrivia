@@ -27,7 +27,7 @@ const numQuesImgOptAns = [
     {
         number: "one", 
         question: "Which country is represented by this flag and landmark?",
-        imgSrc: "quiz-one.png", 
+        imgSrc: "quiz-one.webp", 
         option: ["A. Belgium", "B. Germany"],
         answer: "B. Germany",
     },
@@ -35,7 +35,7 @@ const numQuesImgOptAns = [
     {
         number: "two",
         question: "Which country is represented by this flag and landmark?",
-        imgSrc: "quiz-two.png", 
+        imgSrc: "quiz-two.webp", 
         option: ["A. Nigeria", "B. Algeria"],
         answer: "A. Nigeria",
     },
@@ -43,7 +43,7 @@ const numQuesImgOptAns = [
     {
         number: "three",
         question: "Which country is represented by this flag and landmark?",
-        imgSrc: "quiz-three.png", 
+        imgSrc: "quiz-three.webp", 
         option: ["A. South Korea", "B. Japan"],
         answer: "B. Japan",
     },
@@ -51,7 +51,7 @@ const numQuesImgOptAns = [
     {
         number: "four",
         question: "Which country is represented by this flag and landmark?",
-        imgSrc: "quiz-four.png", 
+        imgSrc: "quiz-four.webp", 
         option: ["A. USA", "B. Liberia"],
         answer: "A. USA",
     },
@@ -59,7 +59,7 @@ const numQuesImgOptAns = [
     {
         number: "five",
         question: "Which country is represented by this flag and landmark?",
-        imgSrc: "quiz-five.png", 
+        imgSrc: "quiz-five.webp", 
         option: ["A. Uruguay", "B. Argentina"],
         answer: "B. Argentina",
     },
@@ -67,7 +67,7 @@ const numQuesImgOptAns = [
     {
         number: "six",
         question: "Which country is represented by this flag and landmark?",
-        imgSrc: "quiz-six.png", 
+        imgSrc: "quiz-six.webp", 
         option: ["A. Australia", "B. New Zealand"],
         answer: "A. Australia",
     },
@@ -75,7 +75,7 @@ const numQuesImgOptAns = [
     {
         number: "seven",
         question: "Which country is represented by this flag and landmark?",
-        imgSrc: "quiz-seven.png", 
+        imgSrc: "quiz-seven.webp", 
         option: ["A. Mozambique", "B. Jamaica"],
         answer: "B. Jamaica",
     },
@@ -83,7 +83,7 @@ const numQuesImgOptAns = [
     {
         number: "eight",
         question: "Which country is represented by this flag and landmark?",
-        imgSrc: "quiz-eight.png", 
+        imgSrc: "quiz-eight.webp", 
         option: ["A. Ghana", "B. Bolivia"],
         answer: "A. Ghana",
     },
@@ -91,7 +91,7 @@ const numQuesImgOptAns = [
     {
         number: "nine",
         question: "Which country is represented by this flag and landmark?",
-        imgSrc: "quiz-nine.png", 
+        imgSrc: "quiz-nine.webp", 
         option: ["A. Niger", "B. India"],
         answer: "B. India",
     },
@@ -99,7 +99,7 @@ const numQuesImgOptAns = [
     {
         number: "ten",
         question: "Which country is represented by this flag and landmark?",
-        imgSrc: "quiz-ten.png", 
+        imgSrc: "quiz-ten.webp", 
         option: ["A. Spain", "B. Macedonia"],
         answer: "A. Spain",
     },
@@ -107,7 +107,7 @@ const numQuesImgOptAns = [
     {
         number: "eleven",
         question: "Which country is represented by this flag and landmark?",
-        imgSrc: "quiz-eleven.png", 
+        imgSrc: "quiz-eleven.webp", 
         option: ["A. Peru", "B. Canada"],
         answer: "B. Canada",
     },
@@ -115,7 +115,7 @@ const numQuesImgOptAns = [
     {
         number: "twelve",
         question: "Which country is represented by this flag and landmark?",
-        imgSrc: "quiz-twelve.png", 
+        imgSrc: "quiz-twelve.webp", 
         option: ["A. Brazil", "B. Gabon"],
         answer: "A. Brazil",
     },
