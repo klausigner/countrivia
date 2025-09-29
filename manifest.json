@@ -1,0 +1,21 @@
+{
+        "name": "Countrivia",
+        "short_name": "Countrivia",
+        "start_url": "/",
+        "display": "standalone",
+        "background_color": "#000000",
+        "theme_color": "#000000",
+        "description": "A pixel art style country quiz game.",
+        "icons": [
+        {
+            "src": "favicon-logo.svg",
+            "sizes": "any",
+            "type": "image/svg+xml"
+        },
+        {
+            "src": "thumbnail.png",
+            "sizes": "1200x630",
+            "type": "image/png"
+        }
+    ]
+}

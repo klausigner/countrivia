@@ -1,5 +1,7 @@
+/* Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap');
 
+/* Storing Styles */
 :root {
     --Pixel: "Pixelify Sans", sans-serif;
 
@@ -18,12 +20,14 @@
     --White-500: #FFFFFF;
 }
 
+/* Global Reset */
 * {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
 }
 
+/* Styles */
 body {
     display: flex;
     flex-direction: column;
