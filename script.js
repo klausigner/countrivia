@@ -138,7 +138,6 @@ function randomizer(arr) {
 };
 
 let randomizedArray = randomizer(numQuesImgOptAns);
-console.log(randomizedArray);
 
 // ✅ Preload all Quiz Images at the Start
 const imageCache = [];
