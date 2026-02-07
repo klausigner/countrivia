@@ -24,80 +24,70 @@ let score = 0;
 
 // Array of Questions, Images, Options and Answers
 const numQuesImgOptAns = [
-    {
-        number: "one", 
+    {       
         question: "Which country is represented by this flag and landmark?",
         imgSrc: "quiz-one.webp", 
         option: ["A. Belgium", "B. Germany"],
         answer: "B. Germany",
     },
 
-    {
-        number: "two",
+    {      
         question: "Which country is represented by this flag and landmark?",
         imgSrc: "quiz-two.webp", 
         option: ["A. Nigeria", "B. Algeria"],
         answer: "A. Nigeria",
     },
 
-    {
-        number: "three",
+    {        
         question: "Which country is represented by this flag and landmark?",
         imgSrc: "quiz-three.webp", 
         option: ["A. South Korea", "B. Japan"],
         answer: "B. Japan",
     },
 
-    {
-        number: "four",
+    {       
         question: "Which country is represented by this flag and landmark?",
         imgSrc: "quiz-four.webp", 
         option: ["A. USA", "B. Liberia"],
         answer: "A. USA",
     },
 
-    {
-        number: "five",
+    {       
         question: "Which country is represented by this flag and landmark?",
         imgSrc: "quiz-five.webp", 
         option: ["A. Uruguay", "B. Argentina"],
         answer: "B. Argentina",
     },
 
-    {
-        number: "six",
+    {      
         question: "Which country is represented by this flag and landmark?",
         imgSrc: "quiz-six.webp", 
         option: ["A. Australia", "B. New Zealand"],
         answer: "A. Australia",
     },
 
-    {
-        number: "seven",
+    {        
         question: "Which country is represented by this flag and landmark?",
         imgSrc: "quiz-seven.webp", 
         option: ["A. Mozambique", "B. Jamaica"],
         answer: "B. Jamaica",
     },
 
-    {
-        number: "eight",
+    {        
         question: "Which country is represented by this flag and landmark?",
         imgSrc: "quiz-eight.webp", 
         option: ["A. Ghana", "B. Bolivia"],
         answer: "A. Ghana",
     },
 
-    {
-        number: "nine",
+    {       
         question: "Which country is represented by this flag and landmark?",
         imgSrc: "quiz-nine.webp", 
         option: ["A. Niger", "B. India"],
         answer: "B. India",
     },
 
-    {
-        number: "ten",
+    {      
         question: "Which country is represented by this flag and landmark?",
         imgSrc: "quiz-ten.webp", 
         option: ["A. Spain", "B. Macedonia"],
@@ -105,7 +95,6 @@ const numQuesImgOptAns = [
     },
 
     {
-        number: "eleven",
         question: "Which country is represented by this flag and landmark?",
         imgSrc: "quiz-eleven.webp", 
         option: ["A. Peru", "B. Canada"],
@@ -113,7 +102,6 @@ const numQuesImgOptAns = [
     },
 
     {
-        number: "twelve",
         question: "Which country is represented by this flag and landmark?",
         imgSrc: "quiz-twelve.webp", 
         option: ["A. Brazil", "B. Gabon"],
@@ -121,9 +109,40 @@ const numQuesImgOptAns = [
     },
 ];
 
+// Question Number Array
+const questionNumberArray = [
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+    "ten",
+    "eleven",
+    "twelve",
+];
+
+// Randomize Array
+function randomizer(arr) {
+    const newArr = [...arr];
+
+    for (let x = newArr.length - 1; x > 0; x--) {
+        let y = Math.floor(Math.random() * (x + 1));
+        [newArr[x], newArr[y]] = [newArr[y], newArr[x]]
+    };
+
+    return newArr;
+};
+
+let randomizedArray = randomizer(numQuesImgOptAns);
+console.log(randomizedArray);
+
 // ✅ Preload all Quiz Images at the Start
 const imageCache = [];
-numQuesImgOptAns.forEach((q) => {
+randomizedArray.forEach((q) => {
     const img = new Image();
     img.src = q.imgSrc;
     imageCache.push(img);
@@ -144,6 +163,8 @@ startGameBtn.addEventListener("click", () => {
 
 // Restart Game
 endGameBtn.addEventListener("click", () => {
+    randomizedArray = randomizer(numQuesImgOptAns);
+
     index = 0;
     score = 0;
 
@@ -160,19 +181,19 @@ endGameBtn.addEventListener("click", () => {
 // Quiz Logic
 function quizLogic() {
     // If There are Still Questions Left
-    if (index < numQuesImgOptAns.length) {
+    if (index < randomizedArray.length) {
         // Add Question Number
-        questionNumber.textContent = numQuesImgOptAns[index].number;
+        questionNumber.textContent = questionNumberArray[index];
 
         // Add Image
-        questionImage.src = numQuesImgOptAns[index].imgSrc;
+        questionImage.src = randomizedArray[index].imgSrc;
 
         // Add Question
-        question.textContent = numQuesImgOptAns[index].question;
+        question.textContent = randomizedArray[index].question;
 
         // Add Options
         questionCardBtn.forEach((items, i) => {
-            items.textContent = numQuesImgOptAns[index].option[i];
+            items.textContent = randomizedArray[index].option[i];
         });
 
         // Enable Buttons
@@ -192,7 +213,7 @@ function quizLogic() {
 
         questionCard.classList.add("hidden");
         endGame.classList.remove("hidden");
-        endGameTitle.innerHTML = `your score is <span>${score}/${numQuesImgOptAns.length}</span>`;
+        endGameTitle.innerHTML = `your score is <span>${score}/${randomizedArray.length}</span>`;
     }
 };
 
@@ -200,7 +221,7 @@ function quizLogic() {
 questionCardBtn.forEach((items) => {
     items.addEventListener("click", () => {
         // If Option is Correct
-        if (items.textContent === numQuesImgOptAns[index].answer) {
+        if (items.textContent === randomizedArray[index].answer) {
             score++;
 
             items.classList.add("selected");
@@ -211,7 +232,7 @@ questionCardBtn.forEach((items) => {
 
             // Next or Check Score Button
             const next = document.createElement("button");
-            if (index === numQuesImgOptAns.length - 1) {
+            if (index === randomizedArray.length - 1) {
                 next.textContent = "Check Score";
             } 
 
@@ -241,7 +262,7 @@ questionCardBtn.forEach((items) => {
 
             // Next or Check Score Button
             const next = document.createElement("button");
-            if (index === numQuesImgOptAns.length - 1) {
+            if (index === randomizedArray.length - 1) {
                 next.textContent = "Check Score";
             } 
 
